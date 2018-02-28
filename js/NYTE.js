@@ -106,7 +106,7 @@ class Article extends React.Component {
 
   componentDidMount(){
     $.ajax({
-      url: 'http://api.linkpreview.net/?key=5a915cc13c0cf87602fc8d5b4989b1fda114b7b4b597c&q=' + this.props.url,
+      url: 'https://api.linkpreview.net/?key=5a915cc13c0cf87602fc8d5b4989b1fda114b7b4b597c&q=' + this.props.url,
       /*url: 'http://api.linkpreview.net/?key=123456&q=https://www.google.com',*/
       success: this.setData
     })
