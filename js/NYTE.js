@@ -69,7 +69,7 @@ const UserDetails=(props)=> {
 
   let pubDate = user.pub_date;
  
-  let getAuthor =  "";
+  let getAuthor = "";
   let getTitle = "";
 
 
@@ -126,7 +126,13 @@ class Article extends React.Component {
   }
 }
 
-$("[type='number']").keypress(function (evt) {
+const btnClick = document.getElementById('btnClick');
+
+btnClick.addEventListener('click', () => {
+  find();
+})
+
+$("[type='number']").keydown(function (evt) {
   evt.preventDefault();
 });
 
