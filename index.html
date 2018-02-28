@@ -1,39 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
-
-    <title>NYT Explorer</title>    
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+     <meta charset="UTF-8" />
+    <title>NYT Explorer</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"> </script>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-      </head>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/NYTE.css"/>
+  </head>
   <body>
-    <h4>Search through the New York Times archive of articles</h4>
-    <input type="number" name="year">
-    <input type="number" name="month">
-    <button>find</button>
-
-
-    <script type="text/babel">
-      
-
-    componentDidMount() {
-    $.ajax({
-      'url' : "https://api.nytimes.com/svc/archive/v1/2016/1.json?api-key=c2feee9db1af45299a22da937ba56925",
-      'success' : function(data){
-
-        console.log(data.response.docs.slice(0,20))
-  }
-  })
-  }
-    </script>
-
-
-
+    <div class="page">
+      <div class="head">
+        <div class="heading">
+          <h1>New York Times Article Archive Explorer</h1>
+          <p>Search through the New York Times archive of articles. More than 13 million articles in total. </p>
+        </div>
+        <div class="monthYear">
+          <label for="month">Month:</label>
+          <input type="number" id="month" value="2" min="1" max="12" required>
+          <label for="year">Year:</label>
+          <input type="number" id="year" value="2018" min="1853" max="2018" required>
+          <button onclick="find()">Find</button> 
+        </div>
+      </div>
+      <div id="root">
+      </div>
+    </div>
+    <footer>
+      <!-- add img instead data provided nyt api -->
+      <p>Data provided by NY Times API</p>
+      <p>Links preview by LinkPreview API</p>
+      <p>&copy; Tijana </p>
+    </footer>
+    <script type="text/babel" src="js/NYTE.js"></script>
   </body>
 </html>
