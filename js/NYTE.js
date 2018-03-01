@@ -35,60 +35,61 @@ class App extends React.Component {
       });
   }
 
-render(){ 
-  if(this.state.data.length ==0){         
-    return  <p>Please wait...</p>
-  } 
+  render(){ 
+    if(this.state.data.length ==0){         
+      return  <p>Please wait...</p>
+    } 
 
-    return (
-      <div className="articleDetails">
-        <div className="article"> {
-          this.state.data.map( 
-            (article) => 
-              <Article key={article.web_url} 
-                       url={article.web_url} 
-                       clickhandler={this.handleArticleClick} 
-                       item={article}/> 
-          )
-        }
+      return (
+        <div className="articleDetails">
+          <div className="article"> {
+            this.state.data.map( 
+              (article) => 
+                <Article key={article.web_url} 
+                        url={article.web_url} 
+                        clickhandler={this.handleArticleClick} 
+                        item={article}/> 
+            )
+          }
+          </div>
+          <div className="details">
+            <ArticleDetails detail={this.state.selectedArticle}/>
+          </div>
         </div>
-        <div className="details">
-          <UserDetails user={this.state.selectedArticle}/>
-        </div>
-      </div>
-    )
-
-
-}
+      )
+  }
 }  
 
-const UserDetails=(props)=> {
-  const user=props.user;
-  let headline = user.headline;
-  let byline = user.byline;
+const ArticleDetails=(props)=> {
+  const detail = props.detail;
+  let headline = detail.headline;
+  let byline = detail.byline;
+  let pubDate = detail.pub_date; 
+  let description = detail.snippet;
+  let link = detail.web_url;       
+  let author = "";
+  let title = "";
+  let date = "";
 
-  let pubDate = user.pub_date;
- 
-  let getAuthor = "";
-  let getTitle = "";
-
+  for(let i in headline){
+    title = headline.main
+  } 
 
   for(let i in byline){
-    getAuthor = byline.original
+    author = byline.original
+  }   
+
+  for(let i in pubDate){
+    date = pubDate.slice(0,16).replace("T"," ")
   }
-  
-  for(let i in headline){
-    getTitle = headline.main
-  } 
-        
-    return(
-      <div className="">
-          <h4>{getTitle}</h4>
-          <p>{getAuthor}</p>
-          <p>{user.snippet}</p>
-          <p>{}</p>
-          <a href={user.web_url} target="_blank">{user.web_url}</a>
-      </div>
+  return(
+    <div className="">
+        <h4>{title}</h4>
+        <p>{author}</p>
+        <p>{description}</p>
+        <p>{date}</p>
+        <a href={link} target="_blank">{link}</a>
+    </div>
   );
 }
 
@@ -139,4 +140,4 @@ $("[type='number']").keydown(function (evt) {
   function find(){
     ReactDOM.unmountComponentAtNode(root);
     ReactDOM.render(<App/>, document.getElementById('root')) 
-  }  
+  }
