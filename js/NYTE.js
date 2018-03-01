@@ -1,10 +1,13 @@
+
+
+
 class App extends React.Component { 
 
   constructor(props){
     super(props)
     this.state = {
       data: [],
-      selectedArticle: []
+      selectedArticle: [],
     };
     this.setData = this.setData.bind(this);
     this.handleArticleClick = this.handleArticleClick.bind(this);
@@ -19,8 +22,8 @@ class App extends React.Component {
       this.setState({data: doc});
   }
   
-  componentDidMount(){
-      var url = "https://api.nytimes.com/svc/archive/v1/" + $('#year').val() + '/' + $('#month').val() + ".json";
+  componentDidMount(year, month){
+      var url = "https://api.nytimes.com/svc/archive/v1/" + this.props.year + '/' + this.props.month + ".json";
       url += '?' + $.param({
       'api-key': "c2feee9db1af45299a22da937ba56925"
       });
@@ -39,7 +42,7 @@ class App extends React.Component {
     if(this.state.data.length ==0){         
       return  <p>Please wait...</p>
     } 
-
+    
       return (
         <div className="articleDetails">
           <div className="article"> {
@@ -116,7 +119,7 @@ class Article extends React.Component {
   render(){
     const data = this.props.item;
     const clickhandler = this.props.clickhandler;  
-
+  
     return (
         <div className="oneArticle" onClick={() => clickhandler(data)}>
           <img src={this.state.data.image} alt={this.state.data.image} width="100"></img>
@@ -130,14 +133,21 @@ class Article extends React.Component {
 const btnClick = document.getElementById('btnClick');
 
 btnClick.addEventListener('click', () => {
-  find();
+  let input = document.getElementById("input").value;
+  
+  let year = input.split("-")[0];
+  let month = input.split("-")[1];
+  
+  if(month[0] == "0") {
+    month = month[1];
+  }
+
+  ReactDOM.unmountComponentAtNode(root);
+  ReactDOM.render(<App year={year} month={month} />, document.getElementById('root')) 
+
 })
 
 $("[type='number']").keydown(function (evt) {
   evt.preventDefault();
 });
 
-  function find(){
-    ReactDOM.unmountComponentAtNode(root);
-    ReactDOM.render(<App/>, document.getElementById('root')) 
-  }

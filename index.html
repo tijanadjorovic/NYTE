@@ -19,10 +19,8 @@
           <p>Search through the New York Times archive of articles. More than 13 million articles in total. </p>
         </div>
         <div class="monthYear">
-          <label for="month">Month:</label>
-          <input type="number" id="month" value="2" required>
-          <label for="year">Year:</label>
-          <input type="number" id="year" value="2018" required>
+          <label for="month">Enter month and year: </label>
+          <input type="month" id="input" min="1851-09" max="2018-03"  required>
           <button id="btnClick">Find</button> 
         </div>
       </div>
@@ -30,7 +28,7 @@
       </div>
     </div>
     <footer>
-      <p><a href="https://developer.nytimes.com" target="_blank">Data provided by NY Times API</a></p>
+      <a href="https://developer.nytimes.com" target="_blank"><img src="img/poweredby_nytimes_150a.png"/></a>
       <p><a href="https://www.linkpreview.net/">Links preview by LinkPreview API</a></p>
       <p>Copyright &copy; Tijana </p>
     </footer>
