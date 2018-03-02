@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-     <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>NYT Explorer</title>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"> </script>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -9,29 +11,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/NYTE.css"/>
     <link rel="icon" href="img/fav.ico" type="image/gif"/>
-  
   </head>
   <body>
-    <div class="page">
-      <div class="head">
+
+    <div class="head">
         <div class="heading">
           <h1>New York Times Article Archive Explorer</h1>
-          <p>Search through the New York Times archive of articles. More than 13 million articles in total. </p>
         </div>
-        <div class="monthYear">
-          <label for="month">Enter month and year: </label>
-          <input type="month" id="input" min="1851-09" max="2018-03"  required>
-          <button id="btnClick">Find</button> 
-        </div>
+    </div>
+
+    <div class="page">
+
+      <div class="monthYear">
+        <p>Search through the New York Times archive of articles. More than 13 million articles in total. </p>
+        <label for="month">Choose month and year: </label>
+        <input type="month" id="input" min="1851-09" max="2018-03"  required>
+        <button id="btnClick">Find</button> 
       </div>
+      
       <div id="root">
       </div>
     </div>
-    <footer>
-      <a href="https://developer.nytimes.com" target="_blank"><img src="img/poweredby_nytimes_150a.png"/></a>
-      <p><a href="https://www.linkpreview.net/">Links preview by LinkPreview API</a></p>
-      <p>Copyright &copy; Tijana </p>
+
+    <footer class="footer">
+      <div class="inner-footer">
+        <a href="https://developer.nytimes.com" target="_blank"><img src="img/poweredby_nytimes_150a.png"/></a>
+        <a href="https://www.linkpreview.net/" target="_blank">Links preview by LinkPreview API</a>
+        <p >Copyright &copy; Tijana </p>
+      </div>
     </footer>
+
     <script type="text/babel" src="js/NYTE.js"></script>
   </body>
 </html>
