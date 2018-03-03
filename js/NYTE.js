@@ -4,6 +4,7 @@ class App extends React.Component {
     this.state = {
       data: [],
       selectedArticle: [],
+      articleVisibile: false
     };
     this.setData = this.setData.bind(this);
     this.handleArticleClick = this.handleArticleClick.bind(this);
@@ -47,12 +48,14 @@ class App extends React.Component {
     return (
       <div className="articleDetails">
         <div className="article"> {
-          this.state.data.map( 
-            (article) => 
-              <Article key={article.web_url} 
-                      url={article.web_url} 
-                      clickhandler={this.handleArticleClick} 
-                      item={article}/> 
+          this.state.data.map( article => 
+              <Article  article={article}
+                        key={article.web_url} 
+                        url={article.web_url} 
+                        clickhandler={this.handleArticleClick} 
+                        item={article}
+                        selectedArticleID={this.state.selectedArticle._id}
+                        /> 
           )
         }
         </div>
@@ -119,7 +122,7 @@ class Article extends React.Component {
     const clickhandler = this.props.clickhandler;  
   
     return (
-      <div className="oneArticle" onClick={() => clickhandler(data)}>
+      <div className={"oneArticle" + " " + (this.props.selectedArticleID == this.props.article._id ? "active" : "")} onClick={() => clickhandler(data)}>
         <img src={this.state.data.image} alt={this.state.data.image} ></img>
         <h3>{this.state.data.title}</h3>
         <p>{this.state.data.description}</p>

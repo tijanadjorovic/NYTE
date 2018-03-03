@@ -138,6 +138,10 @@ button:focus {
   margin: 0;
 }
 
+.active {
+  background-color: #9c99959d;
+}
+
 @media(max-width: 850px){
  
   .articleDetails {
